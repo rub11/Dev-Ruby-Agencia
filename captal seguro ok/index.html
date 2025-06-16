@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capital Seguro - Investimentos e Seguros Patrimoniais</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --dark-brown: #3E2723;
+            --medium-brown: #5D4037;
+            --light-brown: #8D6E63;
+            --beige: #D7CCC8;
+            --gold: #D4AF37;
+            --light-beige: #EFEBE9;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Lato', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: var(--light-beige);
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--dark-brown);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background-color: var(--dark-brown);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+            border: 2px solid var(--gold);
+        }
+        
+        .logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--dark-brown);
+        }
+        
+        .logo-text span {
+            color: var(--gold);
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-menu a {
+            text-decoration: none;
+            color: var(--dark-brown);
+            font-weight: 600;
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .nav-menu a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+        
+        .nav-menu a:hover:after {
+            width: 100%;
+        }
+        
+        .nav-menu a:hover {
+            color: var(--gold);
+        }
+        
+        .nav-cta {
+            background: linear-gradient(to right, var(--dark-brown), var(--medium-brown));
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(62, 39, 35, 0.3);
+        }
+        
+        .nav-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(62, 39, 35, 0.4);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark-brown);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(62, 39, 35, 0.85), rgba(62, 39, 35, 0.85)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=2073&q=80') center/cover no-repeat;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 100px;
+        }
+        
+        .hero-content {
+            max-width: 650px;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            color: white;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            color: var(--beige);
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--gold);
+            color: var(--dark-brown);
+            font-weight: 700;
+            font-size: 1.1rem;
+            padding: 15px 35px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .cta-button:hover {
+            background-color: #e0b83b;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+        
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid var(--gold);
+            color: var(--gold);
+        }
+        
+        .cta-button.secondary:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light-beige);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 2px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 15px;
+            padding: 40px 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s;
+            text-align: center;
+            border: 1px solid var(--beige);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .service-card:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: var(--gold);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--light-beige);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            color: var(--gold);
+            font-size: 2.5rem;
+            border: 2px solid var(--gold);
+        }
+        
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--dark-brown);
+        }
+        
+        .service-card p {
+            color: var(--medium-brown);
+            margin-bottom: 25px;
+        }
+        
+        .service-button {
+            display: inline-block;
+            padding: 10px 25px;
+            background: transparent;
+            color: var(--dark-brown);
+            border: 2px solid var(--dark-brown);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .service-button:hover {
+            background: var(--dark-brown);
+            color: white;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 100px 0;
+            background: linear-gradient(to right, var(--dark-brown), var(--medium-brown));
+            color: white;
+        }
+        
+        .about-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .about-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .value-card {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .value-card i {
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+        }
+        
+        .value-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+        
+        .about-image {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border: 5px solid var(--gold);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: 100px 0;
+            background-color: var(--light-beige);
+        }
+        
+        .process-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 50px;
+            position: relative;
+        }
+        
+        .process-steps:before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 10%;
+            width: 80%;
+            height: 3px;
+            background: var(--gold);
+            z-index: 1;
+        }
+        
+        .step {
+            text-align: center;
+            width: 20%;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--dark-brown);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+            border: 3px solid var(--gold);
+        }
+        
+        .step h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+        }
+        
+        .step p {
+            color: var(--medium-brown);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background: linear-gradient(to right, var(--medium-brown), var(--light-brown));
+            color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 35px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .rating {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 25px;
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        .client {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 15px;
+            background: linear-gradient(to right, var(--dark-brown), var(--medium-brown));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.4rem;
+        }
+        
+        .client-info h4 {
+            margin-bottom: 5px;
+            color: var(--gold);
+        }
+        
+        .client-info p {
+            color: var(--beige);
+            font-size: 0.9rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 100px 0;
+            background-color: var(--light-beige);
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+        
+        .contact-info {
+            background: var(--dark-brown);
+            padding: 40px;
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: var(--gold);
+        }
+        
+        .contact-item {
+            display: flex;
+            margin-bottom: 25px;
+            align-items: flex-start;
+        }
+        
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-right: 15px;
+            min-width: 30px;
+        }
+        
+        .contact-details h4 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .contact-form {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-form h3 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark-brown);
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--beige);
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            border-color: var(--gold);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+        
+        .submit-btn {
+            background: linear-gradient(to right, var(--dark-brown), var(--medium-brown));
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(62, 39, 35, 0.4);
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--dark-brown);
+            color: white;
+            padding: 80px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+        
+        .footer-logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--dark-brown);
+            font-size: 1.5rem;
+        }
+        
+        .footer-logo-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: white;
+        }
+        
+        .footer-logo-text span {
+            color: var(--gold);
+        }
+        
+        .footer-about p {
+            margin-bottom: 25px;
+            color: var(--beige);
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--gold);
+            color: var(--dark-brown);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+            color: var(--gold);
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--beige);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--gold);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--beige);
+            font-size: 0.9rem;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.5);
+            z-index: 999;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero p {
+                font-size: 1.3rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                gap: 50px;
+            }
+            
+            .process-steps:before {
+                display: none;
+            }
+            
+            .step {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+                padding-top: 120px;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .about-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 1rem;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="logo-text">Capital<span>Seguro</span></div>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home">Início</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#sobre">Sobre</a>
+                <a href="#contato">Contato</a>
+            </div>
+            
+           
+            
+           
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Proteção e Crescimento para seu Patrimônio</h1>
+                <p>Investimentos inteligentes e seguros patrimoniais para garantir seu futuro e proteger o que é mais importante</p>
+                <div class="cta-buttons">
+                    <a href="#servicos" class="cta-button">Nossos Serviços</a>
+                    <a href="#" class="cta-button secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Falar com Especialista
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossas Soluções Financeiras</h2>
+                <p>Proteção e crescimento para seu patrimônio</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Investimentos Personalizados</h3>
+                    <p>Estratégias de investimento sob medida para seus objetivos financeiros, com diversificação de portfólio e gestão profissional de ativos.</p>
+                    <a href="#" class="service-button">Saiba Mais</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Seguro Patrimonial</h3>
+                    <p>Proteção completa para seu patrimônio imobiliário contra incêndios, desastres naturais, roubos e danos estruturais.</p>
+                    <a href="#" class="service-button">Saiba Mais</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Proteção de Bens de Valor</h3>
+                    <p>Cobertura especializada para joias, obras de arte, coleções e outros bens de alto valor.</p>
+                    <a href="#" class="service-button">Saiba Mais</a>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Planejamento Sucessório</h3>
+                    <p>Estratégias para preservação e transferência de patrimônio entre gerações com eficiência fiscal.</p>
+                    <a href="#" class="service-button">Saiba Mais</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="sobre">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Sobre a Capital Seguro</h2>
+                    <p>Com mais de 15 anos de experiência, a Capital Seguro se especializou em proteger e fazer crescer o patrimônio de famílias e empresas. Nossa missão é oferecer soluções financeiras integradas que combinam segurança e rentabilidade.</p>
+                    <p>Atuamos com as principais seguradoras e instituições financeiras do mercado, garantindo as melhores condições e coberturas para nossos clientes.</p>
+                    
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h4>Segurança</h4>
+                            <p>Proteção confiável para seu patrimônio</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-lightbulb"></i>
+                            <h4>Estratégia</h4>
+                            <p>Soluções personalizadas para cada cliente</p>
+                        </div>
+                        <div class="value-card">
+                            <i class="fas fa-handshake"></i>
+                            <h4>Confiança</h4>
+                            <p>Relações de longo prazo baseadas em transparência</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="about-image">
+                    <img src="#" alt="Equipe Capital Seguro">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <div class="section-title">
+                <h2>Como Trabalhamos</h2>
+                <p>Nosso processo de atendimento personalizado</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Diagnóstico</h4>
+                    <p>Análise completa da sua situação patrimonial</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Planejamento</h4>
+                    <p>Desenvolvimento de estratégias personalizadas</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Implementação</h4>
+                    <p>Aplicação das soluções selecionadas</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Acompanhamento</h4>
+                    <p>Monitoramento contínuo e ajustes necessários</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que nossos clientes dizem</h2>
+                <p>Histórias reais de quem protegeu e fez crescer seu patrimônio</p>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-content">"A Capital Seguro transformou minha visão sobre investimentos. Com o plano de proteção patrimonial, minha família está segura e meu patrimônio cresce de forma consistente há anos."</p>
+                    <div class="client">
+                        <div class="client-avatar">RS</div>
+                        <div class="client-info">
+                            <h4>Roberto Silva</h4>
+                            <p>Cliente há 5 anos</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p class="testimonial-content">"Quando sofri um incêndio em minha propriedade, o seguro patrimonial da Capital Seguro fez toda a diferença. O processo foi rápido e transparente, e pude reconstruir tudo sem preocupações financeiras."</p>
+                    <div class="client">
+                        <div class="client-avatar">AM</div>
+                        <div class="client-info">
+                            <h4>Ana Martins</h4>
+                            <p>Cliente há 3 anos</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p class="testimonial-content">"O planejamento sucessório feito pela Capital Seguro permitiu que eu transferisse meu patrimônio para meus filhos com a máxima eficiência fiscal. Serviço de excelência!"</p>
+                    <div class="client">
+                        <div class="client-avatar">CP</div>
+                        <div class="client-info">
+                            <h4>Carlos Pereira</h4>
+                            <p>Cliente há 7 anos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contato">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Entre em Contato</h3>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div class="contact-details">
+                            <h4>Endereço</h4>
+                            <p>Av. Paulista, 1000 - São Paulo, SP</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <div class="contact-details">
+                            <h4>Telefone</h4>
+                            <p>(11) 3000-4000</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div class="contact-details">
+                            <h4>Email</h4>
+                            <p>contato@capitalseguro.com.br</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="contact-details">
+                            <h4>Horário de Atendimento</h4>
+                            <p>Segunda a Sexta: 9h às 18h</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <h3>Solicite uma Consultoria</h3>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" placeholder="Digite seu nome" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" placeholder="seuemail@exemplo.com" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" placeholder="(00) 00000-0000" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="service">Serviço de Interesse</label>
+                            <select id="service" required>
+                                <option value="" disabled selected>Selecione um serviço</option>
+                                <option value="investimentos">Investimentos Personalizados</option>
+                                <option value="seguro">Seguro Patrimonial</option>
+                                <option value="bens">Proteção de Bens de Valor</option>
+                                <option value="sucessorio">Planejamento Sucessório</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Mensagem</label>
+                            <textarea id="message" rows="5" placeholder="Como podemos ajudar?" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-btn">Enviar Solicitação</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="footer-logo-text">Capital<span>Seguro</span></div>
+                    </div>
+                    <p>Protegendo e fazendo crescer seu patrimônio com soluções financeiras integradas e personalizadas.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Serviços</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Investimentos Personalizados</a></li>
+                        <li><a href="#">Seguro Patrimonial</a></li>
+                        <li><a href="#">Proteção de Bens de Valor</a></li>
+                        <li><a href="#">Planejamento Sucessório</a></li>
+                        <li><a href="#">Consultoria Financeira</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Recursos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Capital Seguro Investimentos e Seguros Patrimoniais. Todos os direitos reservados.</p>
+                <p>CNPJ: 00.000.000/0000-00 | SUSEP: 00000.000000/0000-00</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="#" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        mobileMenu.addEventListener('click', () => {
+            navMenu.style.display = navMenu.style.display === 'flex' ? 'none' : 'flex';
+            mobileMenu.innerHTML = navMenu.style.display === 'flex' ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (navMenu.style.display === 'flex') {
+                        navMenu.style.display = 'none';
+                        mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+                    }
+                }
+            });
+        });
+        
+        // Form Submission
+        const contactForm = document.querySelector('.contact-form form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Obrigado por sua mensagem! Um especialista entrará em contato em breve.');
+                contactForm.reset();
+            });
+        }
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !mobileMenu.contains(e.target)) {
+                navMenu.style.display = 'none';
+                mobileMenu.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    </script>
+</body>
+</html>

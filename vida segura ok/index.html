@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida Segura - Seguro de Vida para Você e Sua Família</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2a6b7e;    /* Azul petróleo profundo */
+            --secondary: #3da4ab;  /* Azul esverdeado claro */
+            --accent: #f6cd61;     /* Amarelo dourado */
+            --light: #f5f7fa;      /* Cinza claro suave */
+            --dark: #2c3e50;       /* Azul escuro */
+            --gray: #6c757d;
+            --light-blue: #e3f2fd;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        .nav-cta {
+            background-color: var(--secondary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-cta:hover {
+            background-color: #368d94;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(61, 164, 171, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(42,107,126,0.9) 0%, rgba(61,164,171,0.85) 100%), url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1976&q=80') center/cover no-repeat;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 80px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(246, 205, 97, 0.4);
+        }
+        
+        .cta-button:hover {
+            background-color: #f8d777;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(246, 205, 97, 0.5);
+        }
+        
+        .cta-button.secondary {
+            background-color: transparent;
+            border: 2px solid white;
+            box-shadow: none;
+            color: white;
+        }
+        
+        .cta-button.secondary:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .benefit-card {
+            text-align: center;
+            padding: 40px 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .benefit-card p {
+            color: var(--gray);
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            text-align: center;
+            padding: 40px 30px;
+            border: 1px solid rgba(42,107,126,0.1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 25px;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .feature-card p {
+            color: var(--gray);
+        }
+        
+        /* Quote Form */
+        .quote {
+            padding: 100px 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .quote-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .quote-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .quote-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder,
+        .form-group select {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-group select option {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .submit-btn {
+            grid-column: 1 / -1;
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 16px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #f8d777;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .testimonial-card {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            border: 1px solid rgba(42,107,126,0.1);
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(61,164,171,0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .rating {
+            color: #ffc107;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 25px;
+            color: var(--gray);
+            font-style: italic;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+        
+        .client {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .client-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        
+        .client-info p {
+            color: var(--gray);
+            font-size: 1rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        a{
+            text-decoration: none;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: var(--secondary);
+        }
+        
+        .footer-about p {
+            margin-bottom: 25px;
+            color: #adb5bd;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-right: 15px;
+            min-width: 20px;
+        }
+        
+        .contact-info span {
+            color: #adb5bd;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.5);
+            z-index: 999;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .quote-container {
+                padding: 30px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .quote-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .nav-cta {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">Vida<span>Segura</span></div>
+            </div>
+            
+            <a href="#" class="nav-cta" target="_blank">
+                <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Tranquilidade para você. Segurança para quem você ama.</h1>
+                <p>Faça agora uma simulação gratuita do seu seguro de vida e garanta proteção para o futuro da sua família.</p>
+                <div class="cta-buttons">
+                    <a href="#simulacao" class="cta-button">Simular Agora</a>
+                    <a href="#" class="cta-button secondary" target="_blank">
+                        <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="beneficios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por que ter um seguro de vida?</h2>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Proteção financeira para sua família</h3>
+                    <p>Garanta que sua família tenha suporte financeiro mesmo em sua ausência.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Cobertura em casos de doenças graves</h3>
+                    <p>Proteção contra doenças como câncer, infarto e AVC com indenização vitalícia.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Planejamento sucessório inteligente</h3>
+                    <p>Assegure a tranquilidade financeira dos seus herdeiros de forma eficiente.</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-peace"></i>
+                    </div>
+                    <h3>Tranquilidade no presente e no futuro</h3>
+                    <p>Viva com mais segurança sabendo que seu futuro e de sua família estão protegidos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="diferenciais">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Diferenciais</h2>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-medal"></i>
+                    </div>
+                    <h3>Melhores seguradoras do mercado</h3>
+                    <p>Trabalhamos exclusivamente com as seguradoras mais confiáveis e bem avaliadas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <h3>Simulação rápida e sem burocracia</h3>
+                    <p>Processo 100% digital que você faz em minutos, sem papelada.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <h3>Suporte humanizado e consultivo</h3>
+                    <p>Equipe especializada para orientar você em todas as etapas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Planos que cabem no seu bolso</h3>
+                    <p>Opções a partir de R$ 49,90/mês com coberturas completas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Form -->
+    <section class="quote" id="simulacao">
+        <div class="container">
+            <div class="quote-container">
+                <div class="quote-title">
+                    <h2>Simule Agora</h2>
+                    <p>Preencha os dados abaixo para receber sua simulação gratuita</p>
+                </div>
+                
+                <form class="quote-form" id="simulation-form">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" placeholder="Digite seu nome completo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefone (WhatsApp)</label>
+                        <input type="tel" id="phone" placeholder="(00) 00000-0000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="age">Idade</label>
+                        <input type="number" id="age" placeholder="Sua idade" min="18" max="70" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="profession">Profissão</label>
+                        <input type="text" id="profession" placeholder="Sua profissão" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">Quero simular meu seguro</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que nossos clientes dizem</h2>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <p class="testimonial-content">"Consegui proteger minha família com um plano que cabe no meu orçamento. O atendimento da Vida Segura foi incrível, com profissionais que realmente se importam em encontrar a melhor solução para cada cliente."</p>
+                <div class="client">
+                    <div class="client-info">
+                        <h4>Larissa M.</h4>
+                        <p>Cliente desde 2022</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">Vida<span>Segura</span></div>
+                    <p>Sua tranquilidade e a segurança da sua família são nossa prioridade. Oferecemos as melhores soluções em seguros de vida com atendimento personalizado.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#diferenciais">Diferenciais</a></li>
+                        <li><a href="#simulacao">Simulação</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3 class="footer-title">Contato</h3>
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <span>(11) 99999-8888</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>contato@vidasegura.com.br</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Av. Paulista, 1000 - São Paulo, SP</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-clock"></i>
+                            <span>Seg-Sex: 9h às 18h</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Vida Segura. Todos os direitos reservados.</p>
+                <p><a href="#" style="color: #adb5bd; text-decoration: none;">Termos de Uso</a> | <a href="#" style="color: #adb5bd; text-decoration: none;">Política de Privacidade</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="#" class="whatsapp-button" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts para gestão de tráfego -->
+    <script>
+        // Pixel Meta (simulação)
+        console.log("Pixel Meta carregado com sucesso!");
+        
+        // Lead tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Monitorar cliques em botões
+            document.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log(`Lead action: ${this.textContent.trim()} clicked`);
+                });
+            });
+            
+            // Formulário de simulação
+            const simulationForm = document.getElementById('simulation-form');
+            if (simulationForm) {
+                simulationForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Coletar dados do formulário
+                    const name = document.getElementById('name').value;
+                    const phone = document.getElementById('phone').value;
+                    const age = document.getElementById('age').value;
+                    const profession = document.getElementById('profession').value;
+                    
+                    // Registrar lead no console (simulado)
+                    console.log(`Novo lead registrado: ${name}, ${phone}, ${age} anos, ${profession}`);
+                    
+                    // Redirecionar para WhatsApp com mensagem pré-preenchida
+                    const whatsappMessage = `Olá! Sou ${name}, tenho ${age} anos e trabalho como ${profession}. Gostaria de receber minha simulação de seguro de vida.`;
+                    const encodedMessage = encodeURIComponent(whatsappMessage);
+                    window.open(`https://wa.me/55?text=${encodedMessage}&utm_source=trafego&utm_campaign=vidasegura`, '_blank');
+                    
+                    // Resetar formulário
+                    simulationForm.reset();
+                    
+                    // Mostrar mensagem de sucesso
+                    alert('Obrigado! Você será redirecionado para o WhatsApp para receber sua simulação.');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,1106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Previdência Elite - Seu Futuro Financeiro Garantido</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0056b3;
+            --secondary: #002e5d;
+            --accent: #ff9900;
+            --light: #f8f9fa;
+            --dark: #343a40;
+            --gray: #6c757d;
+            --success: #28a745;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background-color: var(--accent);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .btn:hover {
+            background-color: #e68a00;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+
+        .logo h1 {
+            font-size: 24px;
+            margin-bottom: 0;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 25px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+            padding: 40px 25px;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 48px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Plans */
+        .plans {
+            padding: 80px 0;
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .plan-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 1px solid #eee;
+        }
+
+        .plan-card.popular {
+            transform: scale(1.05);
+            border: 2px solid var(--accent);
+            position: relative;
+        }
+
+        .plan-card.popular::before {
+            content: 'MAIS POPULAR';
+            position: absolute;
+            top: 0;
+            right: 0;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 0 0 0 10px;
+        }
+
+        .plan-header {
+            background: var(--primary);
+            color: white;
+            padding: 25px;
+        }
+
+        .plan-header h3 {
+            color: white;
+            font-size: 1.8rem;
+        }
+
+        .plan-price {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        .plan-price span {
+            font-size: 1rem;
+            font-weight: normal;
+        }
+
+        .plan-features {
+            padding: 30px;
+            list-style: none;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .plan-features li:last-child {
+            border-bottom: none;
+        }
+
+        .plan-card .btn {
+            margin: 20px 0;
+        }
+
+        /* Benefits */
+        .benefits {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .benefits-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 50px;
+            align-items: center;
+        }
+
+        .benefits-image {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefits-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .benefits-list {
+            list-style: none;
+        }
+
+        .benefits-list li {
+            margin-bottom: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .benefits-list i {
+            color: var(--accent);
+            font-size: 24px;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+
+        .benefit-text h3 {
+            margin-bottom: 5px;
+        }
+
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background: linear-gradient(to bottom right, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .testimonials .section-title h2 {
+            color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+
+        .author-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #eee;
+            margin-right: 15px;
+            overflow: hidden;
+        }
+
+        .author-info h4 {
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .author-info p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        /* Contact */
+        .contact {
+            padding: 80px 0;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+        }
+
+        .contact-method {
+            display: flex;
+            margin-bottom: 25px;
+        }
+
+        .contact-method i {
+            color: var(--primary);
+            font-size: 24px;
+            margin-right: 15px;
+        }
+
+        .contact-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 16px;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* FAQ */
+        .faq {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px;
+            background: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+
+        .faq-question i {
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s, padding 0.3s;
+            background: white;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 20px;
+            max-height: 500px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column ul li a:hover {
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .benefits-content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                background: white;
+                width: 100%;
+                height: calc(100vh - 80px);
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                padding: 30px;
+            }
+
+            nav.active {
+                transform: translateX(0);
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .plan-card.popular {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .benefits-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div
+                    style="background: var(--primary); color: white; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 24px; font-weight: bold;">
+                    PE</div>
+                <h1>Previdência <span>Elite</span></h1>
+            </div>
+            <nav id="nav">
+                <ul>
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#features">Vantagens</a></li>
+                    <li><a href="#plans">Planos</a></li>
+                    <li><a href="#benefits">Benefícios</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu" id="mobileMenu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <h1>Proteja seu futuro com a Previdência Elite</h1>
+            <p>Garanta tranquilidade financeira para você e sua família com os melhores planos de previdência privada do
+                mercado.</p>
+            <a href="#plans" class="btn">Conheça nossos planos</a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Por que escolher a Previdência Elite?</h2>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Segurança Garantida</h3>
+                    <p>Seu investimento protegido com as melhores práticas do mercado e regulamentação rigorosa.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Rentabilidade Superior</h3>
+                    <p>Planos que superam a poupança tradicional com opções de investimento diversificadas.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-taxi"></i>
+                    </div>
+                    <h3>Flexibilidade Total</h3>
+                    <p>Controle total sobre contribuições, prazos e formas de recebimento do benefício.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plans Section -->
+    <section class="plans" id="plans">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nossos Planos de Previdência</h2>
+                <p>Escolha o plano que melhor se adapta às suas necessidades</p>
+            </div>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Plano Essencial</h3>
+                        <div class="plan-price">R$ 200<span>/mês</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Investimento inicial: R$ 1.000</li>
+                        <li>Rentabilidade média: 100% do CDI</li>
+                        <li>Carência: 60 meses</li>
+                        <li>Resgates parciais: Permitidos</li>
+                        <li>Benefício fiscal: Não</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Contratar</a>
+                </div>
+                <div class="plan-card popular">
+                    <div class="plan-header">
+                        <h3>Plano Premium</h3>
+                        <div class="plan-price">R$ 500<span>/mês</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Investimento inicial: R$ 2.500</li>
+                        <li>Rentabilidade média: 110% do CDI</li>
+                        <li>Carência: 48 meses</li>
+                        <li>Resgates parciais: Permitidos</li>
+                        <li>Benefício fiscal: Sim</li>
+                        <li>Seguro de vida inclusivo</li>
+                    </ul>
+                    <a href="#" class="btn">Contratar</a>
+                </div>
+                <div class="plan-card">
+                    <div class="plan-header">
+                        <h3>Plano Elite</h3>
+                        <div class="plan-price">R$ 1.000<span>/mês</span></div>
+                    </div>
+                    <ul class="plan-features">
+                        <li>Investimento inicial: R$ 5.000</li>
+                        <li>Rentabilidade média: 125% do CDI</li>
+                        <li>Carência: 36 meses</li>
+                        <li>Resgates parciais: Ilimitados</li>
+                        <li>Benefício fiscal: Sim</li>
+                        <li>Seguro de vida premium</li>
+                        <li>Consultoria financeira personalizada</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Contratar</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="benefits">
+        <div class="container">
+            <div class="section-title">
+                <h2>Benefícios Exclusivos</h2>
+            </div>
+            <div class="benefits-content">
+                <div class="benefits-image">
+                    <div
+                        style="background: #eee; height: 350px; display: flex; align-items: center; justify-content: center;">
+                        <i class="fas fa-chart-pie" style="font-size: 100px; color: #ccc;"></i>
+                    </div>
+                </div>
+                <div class="benefits-list-container">
+                    <ul class="benefits-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div class="benefit-text">
+                                <h3>Diversificação de Investimentos</h3>
+                                <p>Aplicações em diferentes classes de ativos para maximizar retornos e minimizar
+                                    riscos.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div class="benefit-text">
+                                <h3>Planejamento Sucessório</h3>
+                                <p>Garantia de transferência de recursos para seus herdeiros de forma ágil e segura.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div class="benefit-text">
+                                <h3>Redução de Impostos</h3>
+                                <p>Economia de até 35% no Imposto de Renda com dedução nas contribuições.</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <div class="benefit-text">
+                                <h3>Assistência Familiar</h3>
+                                <p>Auxílio funeral, assistência médica e suporte psicológico para toda a família.</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>O que nossos clientes dizem</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Graças à Previdência Elite, consegui me aposentar com tranquilidade e
+                        hoje vivo minha vida sem preocupações financeiras. O atendimento é excepcional!"</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <i class="fas fa-user" style="font-size: 30px; color: #777; padding: 15px;"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Carlos Mendes</h4>
+                            <p>Cliente há 8 anos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"Comecei a investir cedo e hoje vejo como foi a melhor decisão da minha
+                        vida. A rentabilidade superou todas as minhas expectativas."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <i class="fas fa-user" style="font-size: 30px; color: #777; padding: 15px;"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Juliana Almeida</h4>
+                            <p>Cliente há 5 anos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"O suporte da equipe da Previdência Elite fez toda a diferença. Eles me
+                        ajudaram a escolher o plano perfeito para meu perfil de investidor."</p>
+                    <div class="testimonial-author">
+                        <div class="author-image">
+                            <i class="fas fa-user" style="font-size: 30px; color: #777; padding: 15px;"></i>
+                        </div>
+                        <div class="author-info">
+                            <h4>Roberto Santos</h4>
+                            <p>Cliente há 3 anos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Entre em Contato</h2>
+                <p>Estamos prontos para ajudar a planejar seu futuro</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informações de Contato</h3>
+                    <div class="contact-method">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Endereço</h4>
+                            <p>Av. Paulista, 1000 - São Paulo, SP</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h4>Telefone</h4>
+                            <p>(11) 3000-4000</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h4>Email</h4>
+                            <p>contato@previdenciaelite.com.br</p>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>Horário de Atendimento</h4>
+                            <p>Segunda a Sexta: 9h às 18h</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <input type="text" placeholder="Nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Telefone" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensagem</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-title">
+                <h2>Perguntas Frequentes</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Qual a diferença entre PGBL e VGBL?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>O PGBL (Plano Gerador de Benefício Livre) permite dedução das contribuições no Imposto de
+                            Renda até o limite de 12% da renda bruta. O VGBL (Vida Gerador de Benefício Livre) não
+                            permite essa dedução, mas os rendimentos são tributados apenas no resgate. A escolha depende
+                            do perfil do contribuinte.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Posso resgatar meu dinheiro antes do prazo?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Sim, a maioria dos nossos planos permite resgates parciais a partir do 3º ano de
+                            contribuição. O valor resgatado estará sujeito à tributação específica do plano e pode haver
+                            cobrança de carência conforme o contrato.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Como funciona o benefício fiscal?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Nos planos PGBL, você pode deduzir até 12% da sua renda bruta tributável na declaração anual
+                            de IR. Essa dedução reduz a base de cálculo do imposto, gerando economia. No resgate, todo o
+                            valor será tributado pela tabela regressiva.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Quais são as opções de recebimento na aposentadoria?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Oferecemos três modalidades: Renda Vitalícia (pagamentos mensais por toda a vida), Renda
+                            Temporária (pagamentos por período determinado) e Resgate Programado (saques periódicos do
+                            saldo acumulado).</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Previdência Elite</h3>
+                    <p>Sua segurança financeira é nossa prioridade. Oferecemos soluções personalizadas para garantir um
+                        futuro tranquilo.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#features">Vantagens</a></li>
+                        <li><a href="#plans">Planos</a></li>
+                        <li><a href="#benefits">Benefícios</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Nossos Planos</h3>
+                    <ul>
+                        <li><a href="#">Plano Essencial</a></li>
+                        <li><a href="#">Plano Premium</a></li>
+                        <li><a href="#">Plano Elite</a></li>
+                        <li><a href="#">Plano Empresarial</a></li>
+                        <li><a href="#">Comparativo de Planos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Suporte</h3>
+                    <ul>
+                        <li><a href="#">Área do Cliente</a></li>
+                        <li><a href="#">Perguntas Frequentes</a></li>
+                        <li><a href="#">Termos e Condições</a></li>
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Trabalhe Conosco</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 Previdência Elite. Todos os direitos reservados. CNPJ: 00.000.000/0000-00</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenu = document.getElementById('mobileMenu');
+        const nav = document.getElementById('nav');
+
+        mobileMenu.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        // FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+
+                    // Close mobile menu if open
+                    if (nav.classList.contains('active')) {
+                        nav.classList.remove('active');
+                    }
+                }
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 2px 15px rgba(0, 0, 0, 0.1)';
+            } else {
+                header.style.boxShadow = 'none';
+            }
+        });
+    </script>
+</body>
+
+</html>

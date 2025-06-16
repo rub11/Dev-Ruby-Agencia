@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Residência Segura - Seguro Residencial Premium</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #7e4ccb;    /* Roxo principal */
+            --secondary: #5a2e98;  /* Roxo mais escuro */
+            --accent: #ffd166;     /* Amarelo dourado */
+            --light: #f5f5f5;      /* Cinza claro */
+            --dark: #2c2c54;       /* Azul escuro */
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #ffffff;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        .nav-cta {
+            background-color: var(--primary);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .nav-cta:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(126, 76, 203, 0.3);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(126,76,203,0.9) 0%, rgba(90,46,152,0.9) 100%), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80') center/cover no-repeat;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            color: white;
+            padding-top: 80px;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            animation: fadeIn 1s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero h2 {
+            font-size: 1.8rem;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgba(0,0,0,0.5);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--dark);
+            font-weight: 700;
+            font-size: 1.2rem;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 209, 102, 0.4);
+        }
+        
+        .cta-button:hover {
+            background-color: #ffdb80;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 209, 102, 0.5);
+        }
+        
+        /* Benefits Section */
+        .benefits {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .benefit-card {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-top: 4px solid var(--primary);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        
+        .benefit-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .benefit-card p {
+            color: var(--gray);
+        }
+        
+        /* Quote Form */
+        .quote {
+            padding: 100px 0;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .quote-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 50px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .quote-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .quote-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .quote-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 8px;
+            border: none;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .form-group input::placeholder,
+        .form-group select {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .form-group select option {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .submit-btn {
+            grid-column: 1 / -1;
+            background-color: var(--accent);
+            color: var(--dark);
+            border: none;
+            padding: 16px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #ffdb80;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .timer-note {
+            text-align: center;
+            margin-top: 20px;
+            font-style: italic;
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.8);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial-card {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 5rem;
+            color: rgba(126,76,203,0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+        
+        .testimonial-content {
+            margin-bottom: 25px;
+            color: var(--gray);
+            font-style: italic;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .client-info {
+            display: flex;
+            align-items: center;
+        }
+        
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-right: 15px;
+        }
+        
+        .client-info h4 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .client-info p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .whatsapp-section {
+            background-color: var(--primary);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .whatsapp-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+        }
+        
+        .whatsapp-button {
+            background-color: #25d366;
+            color: white;
+            border: none;
+            padding: 18px 50px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .whatsapp-button:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo span {
+            color: var(--accent);
+        }
+        
+        .footer-about p {
+            margin-bottom: 25px;
+            color: #adb5bd;
+        }
+        
+        .contact-info {
+            list-style: none;
+        }
+        
+        .contact-info li {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            font-size: 1.2rem;
+            color: var(--accent);
+            margin-right: 15px;
+            min-width: 20px;
+        }
+        
+        .contact-info span {
+            color: #adb5bd;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-title {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+        
+        .copyright a {
+            color: #adb5bd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .copyright a:hover {
+            color: var(--accent);
+        }
+        
+        /* WhatsApp Button */
+        .whatsapp-button-fixed {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: #25d366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.5);
+            z-index: 999;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero {
+                text-align: center;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+            }
+            
+            .quote-container {
+                padding: 30px;
+            }
+            
+            .nav-cta {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero h2 {
+                font-size: 1.3rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .cta-button {
+                padding: 12px 30px;
+                font-size: 1.1rem;
+            }
+            
+            .section-title h2 {
+                font-size: 2rem;
+            }
+            
+            .quote-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-text">Residência<span>Segura</span></div>
+            </div>
+            
+            <a href="#" class="nav-cta" target="_blank">
+                <i class="fab fa-whatsapp"></i> Falar no WhatsApp
+            </a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Residência Segura — Seu lar merece o melhor em proteção</h1>
+                <h2>🟣 Proteja seu patrimônio com um seguro residencial premium</h2>
+                <p>Sua casa é seu maior bem — e ela merece estar protegida contra imprevistos. Com o Residência Segura, você garante tranquilidade, segurança e suporte completo, em planos sob medida para seu estilo de vida.</p>
+                <a href="#simulacao" class="cta-button">Simular Agora</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits" id="beneficios">
+        <div class="container">
+            <div class="section-title">
+                <h2>💎 Por que escolher o Residência Segura?</h2>
+            </div>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Cobertura completa</h3>
+                    <p>Contra incêndios, roubos, vendavais e danos elétricos</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Assistência residencial 24h</h3>
+                    <p>Encanador, chaveiro, eletricista sempre que precisar</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h3>Planos personalizados</h3>
+                    <p>Para apartamentos, casas e condomínios</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <h3>Bens de alto valor</h3>
+                    <p>Cobertura para móveis, eletrônicos, joias e mais</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3>Indenização rápida</h3>
+                    <p>Processo sem burocracia e pagamento ágil</p>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>Atendimento premium</h3>
+                    <p>Consultores especializados para te ajudar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote Form -->
+    <section class="quote" id="simulacao">
+        <div class="container">
+            <div class="quote-container">
+                <div class="quote-title">
+                    <h2>📋 Simule sua proteção agora mesmo</h2>
+                    <p>Formulário simples e rápido para receber sua cotação personalizada</p>
+                </div>
+                
+                <form class="quote-form" id="quote-form">
+                    <div class="form-group">
+                        <label for="name">Nome completo</label>
+                        <input type="text" id="name" placeholder="Digite seu nome completo" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Telefone (WhatsApp)</label>
+                        <input type="tel" id="phone" placeholder="(00) 00000-0000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="property-type">Tipo de imóvel</label>
+                        <select id="property-type" required>
+                            <option value="" disabled selected>Selecione o tipo</option>
+                            <option value="casa">Casa</option>
+                            <option value="apartamento">Apartamento</option>
+                            <option value="condominio">Condomínio</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="cep">CEP da residência</label>
+                        <input type="text" id="cep" placeholder="00000-000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="value">Valor estimado dos bens a proteger</label>
+                        <input type="text" id="value" placeholder="Ex: R$ 150.000,00" required>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Simular Seguro Residencial Premium
+                    </button>
+                    
+                    <p class="timer-note">Receba sua proposta personalizada em até 30 minutos!</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2>🗣️ Depoimentos de clientes satisfeitos</h2>
+            </div>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"Quando minha casa teve um curto-circuito, a seguradora cobriu tudo sem dor de cabeça. Atendimento impecável!"</p>
+                    <div class="client-info">
+                        <div class="client-avatar">CB</div>
+                        <div>
+                            <h4>Carla B., BH</h4>
+                            <p>Cliente há 3 anos</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <p class="testimonial-content">"Escolhi o plano premium e hoje durmo tranquilo sabendo que meu lar está protegido."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">FR</div>
+                        <div>
+                            <h4>Felipe R., SP</h4>
+                            <p>Cliente há 2 anos</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WhatsApp Section -->
+    <section class="whatsapp-section">
+        <div class="container">
+            <h2>💬 Atendimento exclusivo via WhatsApp</h2>
+            <p>Clique abaixo e fale agora com um especialista</p>
+            <a href="#" class="whatsapp-button" target="_blank">
+                <i class="fab fa-whatsapp"></i> Falar com um consultor
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">Residência<span>Segura</span></div>
+                    <p>🏠 Protegendo lares com excelência. Seu patrimônio merece o melhor em proteção e tranquilidade.</p>
+                    
+                    <ul class="contact-info">
+                        <li>
+                            <i class="fab fa-whatsapp"></i>
+                            <span>(00) 0000-0000</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <span>atendimento@residenciasegura.com.br</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Atendemos todo o Brasil</span>
+                        </li>
+                    </ul>
+                    
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Links Rápidos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#beneficios">Benefícios</a></li>
+                        <li><a href="#simulacao">Simulação</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="footer-title">Documentos</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Política de Privacidade</a></li>
+                        <li><a href="#">Termos de Uso</a></li>
+                        <li><a href="#">Coberturas e Condições</a></li>
+                        <li><a href="#">Canal de Ética</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Residência Segura Premium. Todos os direitos reservados.</p>
+                <p>CNPJ: 00.000.000/0000-00 | SUSEP: 00000.000000/0000-00</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="#" class="whatsapp-button-fixed" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Scripts para gestão de tráfego -->
+    <script>
+        // Pixel Meta (simulação)
+        console.log("Pixel Meta carregado com sucesso!");
+        
+        // Lead tracking
+        document.addEventListener('DOMContentLoaded', function() {
+            // Monitorar cliques em botões
+            document.querySelectorAll('a.cta-button, .whatsapp-button').forEach(link => {
+                link.addEventListener('click', function() {
+                    console.log(`Lead action: ${this.textContent.trim()} clicked`);
+                    console.log(`UTM: source=trafego&campaign=residenciasegura`);
+                });
+            });
+            
+            // Formulário de cotação
+            const quoteForm = document.getElementById('quote-form');
+            if (quoteForm) {
+                quoteForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // Coletar dados do formulário
+                    const name = document.getElementById('name').value;
+                    const phone = document.getElementById('phone').value;
+                    const propertyType = document.getElementById('property-type').value;
+                    const cep = document.getElementById('cep').value;
+                    const value = document.getElementById('value').value;
+                    
+                    // Registrar lead no console (simulado)
+                    console.log(`Novo lead registrado: ${name}, ${phone}, ${propertyType}, ${cep}, ${value}`);
+                    console.log(`UTM: source=trafego&campaign=residenciasegura`);
+                    
+                    // Mostrar mensagem de sucesso
+                    alert('Obrigado! Sua simulação foi enviada. Em até 30 minutos um consultor entrará em contato com você.');
+                    
+                    // Resetar formulário
+                    quoteForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

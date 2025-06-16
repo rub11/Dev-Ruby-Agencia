@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgroProtege - Seguro Rural Completo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --secondary: #ffa000;
+            --accent: #5d4037;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --gradient: linear-gradient(135deg, #2e7d32, #1b5e20);
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+            background-color: #f9fbfd;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        h1 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            line-height: 1.2;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        h2:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 1.5vw, 1.1rem);
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--secondary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: clamp(0.9rem, 1.1vw, 1.1rem);
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(255, 160, 0, 0.3);
+        }
+
+        .btn:hover {
+            background: #e69100;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 160, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: var(--primary);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-dark);
+            box-shadow: 0 6px 20px rgba(46, 125, 50, 0.4);
+        }
+
+        section {
+            padding: clamp(40px, 8vw, 80px) 0;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            color: var(--primary);
+        }
+
+        .logo-text span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: clamp(10px, 2.5vw, 30px);
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            font-size: clamp(0.9rem, 1.1vw, 1rem);
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        nav a:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+
+        nav a:hover:after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: var(--gradient);
+            color: white;
+            padding: clamp(100px, 16vw, 180px) 0 clamp(60px, 8vw, 100px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,128L48,138.7C96,149,192,171,288,186.7C384,203,480,213,576,197.3C672,181,768,139,864,128C960,117,1056,139,1152,138.7C1248,139,1344,117,1392,106.7L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center bottom;
+        }
+
+        .hero-content {
+            position: relative;
+            max-width: 600px;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 1.5vw, 1.2rem);
+            margin-bottom: clamp(20px, 3vw, 30px);
+            opacity: 0.9;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .hero-image {
+            max-width: 100%;
+            margin-top: clamp(30px, 5vw, 50px);
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .hero-image img {
+            width: 100%;
+            display: block;
+            transition: var(--transition);
+        }
+
+        /* Features */
+        .features {
+            background: white;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            margin-top: clamp(20px, 4vw, 40px);
+        }
+
+        .feature-card {
+            background: var(--light);
+            border-radius: 15px;
+            padding: clamp(20px, 3vw, 30px);
+            text-align: center;
+            transition: var(--transition);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: clamp(60px, 8vw, 80px);
+            height: clamp(60px, 8vw, 80px);
+            background: rgba(46, 125, 50, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto clamp(10px, 2vw, 20px);
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            color: var(--primary);
+        }
+
+        .feature-card h3 {
+            margin-bottom: clamp(10px, 1.5vw, 15px);
+            color: var(--primary-dark);
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+        }
+
+        /* Coverage */
+        .coverage {
+            background: #f0f7f0;
+        }
+
+        .coverage-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            margin-top: clamp(20px, 4vw, 40px);
+        }
+
+        .coverage-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            border: 2px solid var(--light-gray);
+        }
+
+        .coverage-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .coverage-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .coverage-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .coverage-card:hover .coverage-image img {
+            transform: scale(1.05);
+        }
+
+        .coverage-content {
+            padding: clamp(15px, 2.5vw, 25px);
+        }
+
+        .coverage-content h3 {
+            color: var(--primary-dark);
+            margin-bottom: clamp(10px, 1.5vw, 15px);
+            font-size: clamp(1.1rem, 1.5vw, 1.3rem);
+        }
+
+        /* Testimonials */
+        .testimonials .container {
+            max-width: 800px;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
+            gap: clamp(20px, 3vw, 30px);
+            margin-top: clamp(20px, 4vw, 40px);
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 15px;
+            padding: clamp(20px, 3vw, 30px);
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .testimonial-card:before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: clamp(3rem, 6vw, 5rem);
+            color: rgba(46, 125, 50, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-content {
+            margin-top: clamp(20px, 3vw, 30px);
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.5vw, 15px);
+        }
+
+        .author-avatar {
+            width: clamp(40px, 6vw, 60px);
+            height: clamp(40px, 6vw, 60px);
+            border-radius: 50%;
+            background: var(--light-gray);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-weight: bold;
+            font-size: clamp(1rem, 1.5vw, 1.5rem);
+        }
+
+        .author-info h4 {
+            margin-bottom: 5px;
+            color: var(--primary-dark);
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+        }
+
+        .author-info p {
+            color: var(--gray);
+            margin: 0;
+            font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--gradient);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(0,0,0,0.1)" d="M0,160L48,170.7C96,181,192,203,288,197.3C384,192,480,160,576,160C672,160,768,192,864,186.7C960,181,1056,139,1152,128C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center bottom;
+        }
+
+        .contact h2 {
+            color: white;
+        }
+
+        .contact h2:after {
+            background: var(--secondary);
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: clamp(30px, 5vw, 50px);
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: clamp(20px, 4vw, 40px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group {
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+            font-size: clamp(0.9rem, 1.1vw, 1rem);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: clamp(12px, 1.5vw, 15px);
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            font-size: clamp(0.9rem, 1.1vw, 1rem);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .form-control::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-dark);
+            color: white;
+            padding: clamp(30px, 6vw, 60px) 0 clamp(15px, 2vw, 20px);
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: clamp(20px, 4vw, 40px);
+            margin-bottom: clamp(20px, 4vw, 40px);
+        }
+
+        .footer-logo {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(10px, 2vw, 20px);
+        }
+
+        .footer-logo .logo {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-logo .logo-text {
+            font-size: clamp(1.1rem, 2vw, 1.5rem);
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            gap: clamp(10px, 1.5vw, 15px);
+            margin-top: clamp(10px, 2vw, 20px);
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: clamp(35px, 4vw, 40px);
+            height: clamp(35px, 4vw, 40px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            transition: var(--transition);
+            font-size: clamp(0.9rem, 1.1vw, 1rem);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            color: white;
+            margin-bottom: clamp(15px, 2vw, 20px);
+            font-size: clamp(1rem, 1.3vw, 1.3rem);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: clamp(8px, 1vw, 10px);
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: clamp(0.85rem, 1.1vw, 0.9rem);
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: clamp(15px, 2vw, 20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: clamp(0.8rem, 1.1vw, 0.9rem);
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.show {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-tractor"></i>
+                </div>
+                <div class="logo-text">Agro<span>Protege</span></div>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#features">Vantagens</a></li>
+                    <li><a href="#coverage">Coberturas</a></li>
+                    <li><a href="#testimonials">Depoimentos</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Proteção Completa para o Seu Agronegócio</h1>
+                <p>Garanta a segurança da sua produção com nossos seguros rurais personalizados. Coberturas abrangentes para proteger sua lavoura, gado, equipamentos e muito mais.</p>
+                <div class="hero-buttons">
+                    <a href="#coverage" class="btn">Conhecer Coberturas</a>
+                    <a href="#contact" class="btn btn-secondary">Fazer Cotação</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='800' height='400' viewBox='0 0 800 400'><rect width='800' height='400' fill='%232e7d32'/><path d='M0,300 Q200,200 400,300 T800,300 L800,400 L0,400 Z' fill='%231b5e20'/><circle cx='150' cy='150' r='50' fill='%23ffa000'/><path d='M100,250 L200,250 L150,150 Z' fill='%235d4037'/><rect x='300' y='200' width='200' height='100' rx='10' fill='%23795548'/><rect x='350' y='150' width='100' height='50' fill='%23795548'/><circle cx='400' cy='130' r='20' fill='%23ffa000'/></svg>" alt="Agronegócio Protegido">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Vantagens do Nosso Seguro Rural</h2>
+            <p class="subtitle" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">Proteção especializada para enfrentar os desafios do campo e garantir sua tranquilidade</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cloud-sun-rain"></i>
+                    </div>
+                    <h3>Proteção Climática</h3>
+                    <p>Cobertura contra eventos climáticos como seca, geada, granizo e excesso de chuvas que possam prejudicar sua lavoura.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-cow"></i>
+                    </div>
+                    <h3>Proteção Animal</h3>
+                    <p>Seguro para seu rebanho contra doenças, acidentes e mortalidade, garantindo a saúde e produtividade do seu gado.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-tractor"></i>
+                    </div>
+                    <h3>Equipamentos Agrícolas</h3>
+                    <p>Proteção para seus tratores, colheitadeiras e outros equipamentos contra danos, roubo e quebras.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3>Benfeitorias e Instalações</h3>
+                    <p>Cobertura para suas construções rurais, silos, armazéns e outras estruturas contra incêndio e desastres naturais.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Coverage Section -->
+    <section class="coverage" id="coverage">
+        <div class="container">
+            <h2>Nossas Coberturas Especializadas</h2>
+            <p class="subtitle" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">Soluções personalizadas para cada necessidade do seu agronegócio</p>
+            
+            <div class="coverage-grid">
+                <div class="coverage-card">
+                    <div class="coverage-image">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%232e7d32'/><circle cx='100' cy='100' r='50' fill='%23ffa000'/><path d='M80,150 L120,150 L100,100 Z' fill='%235d4037'/><rect x='200' y='80' width='150' height='100' rx='10' fill='%23795548'/></svg>" alt="Seguro Agrícola">
+                    </div>
+                    <div class="coverage-content">
+                        <h3>Seguro Agrícola</h3>
+                        <p>Proteção para sua lavoura contra perdas decorrentes de fenômenos climáticos adversos, pragas e doenças.</p>
+                        <a href="#contact" class="btn btn-secondary" style="margin-top: 15px;">Solicitar Cotação</a>
+                    </div>
+                </div>
+                
+                <div class="coverage-card">
+                    <div class="coverage-image">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%232e7d32'/><path d='M50,150 Q150,50 250,150 T450,150 L450,200 L50,200 Z' fill='%231b5e20'/><circle cx='100' cy='120' r='20' fill='%23fff'/><circle cx='150' cy='120' r='20' fill='%23fff'/><circle cx='300' cy='120' r='30' fill='%23ffa000'/></svg>" alt="Seguro Pecuário">
+                    </div>
+                    <div class="coverage-content">
+                        <h3>Seguro Pecuário</h3>
+                        <p>Cobertura para seu rebanho contra morte por acidentes, doenças e eventos climáticos extremos.</p>
+                        <a href="#contact" class="btn btn-secondary" style="margin-top: 15px;">Solicitar Cotação</a>
+                    </div>
+                </div>
+                
+                <div class="coverage-card">
+                    <div class="coverage-image">
+                        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='400' height='200' viewBox='0 0 400 200'><rect width='400' height='200' fill='%232e7d32'/><rect x='50' y='50' width='300' height='100' rx='10' fill='%23795548'/><circle cx='100' cy='100' r='30' fill='%23ffa000'/><circle cx='300' cy='100' r='30' fill='%23ffa000'/></svg>" alt="Seguro de Equipamentos">
+                    </div>
+                    <div class="coverage-content">
+                        <h3>Seguro de Equipamentos</h3>
+                        <p>Proteção para seus maquinários agrícolas contra quebras, danos acidentais, roubo e incêndio.</p>
+                        <a href="#contact" class="btn btn-secondary" style="margin-top: 15px;">Solicitar Cotação</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>Depoimentos de Produtores</h2>
+            <p class="subtitle" style="text-align: center; max-width: 800px; margin: 0 auto 50px;">Veja o que agricultores e pecuaristas que confiaram na AgroProtege têm a dizer</p>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Quando uma forte geada atingiu minha plantação de café, pensei que perderia tudo. Graças ao seguro da AgroProtege, pude recuperar minhas perdas e reinvestir na próxima safra."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <h4>João Silva</h4>
+                            <p>Produtor de Café - Minas Gerais</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"O seguro para meu gado de leite salvou meu negócio quando uma doença atingiu o rebanho. O atendimento foi ágil e o processo de indenização foi muito mais simples do que imaginei."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <h4>Maria Oliveira</h4>
+                            <p>Pecuarista - Rio Grande do Sul</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p>"Depois que meu trator foi danificado em um acidente, o seguro cobriu todos os reparos. A equipe da AgroProtege me orientou em cada etapa e em poucos dias estava tudo resolvido."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">C</div>
+                        <div class="author-info">
+                            <h4>Carlos Santos</h4>
+                            <p>Produtor de Soja - Mato Grosso</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Solicite uma Cotação</h2>
+            <p class="subtitle" style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: rgba(255,255,255,0.9);">Preencha o formulário e receba uma proposta personalizada para seu agronegócio</p>
+            
+            <div class="contact-container">
+                <div class="contact-form">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nome Completo</label>
+                            <input type="text" id="name" class="form-control" placeholder="Digite seu nome">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail</label>
+                            <input type="email" id="email" class="form-control" placeholder="Digite seu e-mail">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Telefone</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="(00) 00000-0000">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="property">Tipo de Propriedade</label>
+                            <input type="text" id="property" class="form-control" placeholder="Ex: Fazenda, Sítio, Haras">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="coverage-type">Tipo de Cobertura Desejada</label>
+                            <select id="coverage-type" class="form-control">
+                                <option value="">Selecione uma opção</option>
+                                <option value="agricola">Seguro Agrícola</option>
+                                <option value="pecuario">Seguro Pecuário</option>
+                                <option value="equipamentos">Seguro de Equipamentos</option>
+                                <option value="benfeitorias">Seguro de Benfeitorias</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        
+                        <button type="submit" class="btn">Solicitar Cotação</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-logo">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <i class="fas fa-tractor"></i>
+                        </div>
+                        <div class="logo-text">Agro<span>Protege</span></div>
+                    </div>
+                    <p>Sua parceira na proteção do agronegócio brasileiro. Oferecemos soluções de seguro rural personalizadas para garantir a segurança da sua produção.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Nossas Coberturas</h4>
+                    <ul>
+                        <li><a href="#">Seguro Agrícola</a></li>
+                        <li><a href="#">Seguro Pecuário</a></li>
+                        <li><a href="#">Seguro de Equipamentos</a></li>
+                        <li><a href="#">Seguro de Benfeitorias</a></li>
+                        <li><a href="#">Seguro de Florestas</a></li>
+                        <li><a href="#">Seguro de Cédito Rural</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#features">Vantagens</a></li>
+                        <li><a href="#coverage">Coberturas</a></li>
+                        <li><a href="#testimonials">Depoimentos</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        <li><a href="#">Sobre Nós</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><i class="fas fa-phone"></i> (11) 4000-1234</li>
+                        <li><i class="fas fa-envelope"></i> contato@agroprotege.com.br</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Av. das Nações, 1000 - São Paulo, SP</li>
+                        <li><i class="fas fa-clock"></i> Seg-Sex: 8h às 18h</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 AgroProtege Seguros Rurais. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Fechar menu mobile após clicar em um link
+                    document.getElementById('nav-menu').classList.remove('show');
+                }
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('show');
+        });
+        
+        // Form submission
+        const contactForm = document.querySelector('.contact-form form');
+        if(contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Simple validation
+                const nameInput = document.getElementById('name');
+                const emailInput = document.getElementById('email');
+                let isValid = true;
+                
+                if(nameInput.value.trim() === '') {
+                    isValid = false;
+                    nameInput.style.border = '2px solid #ffa000';
+                } else {
+                    nameInput.style.border = 'none';
+                }
+                
+                if(emailInput.value.trim() === '' || !emailInput.value.includes('@')) {
+                    isValid = false;
+                    emailInput.style.border = '2px solid #ffa000';
+                } else {
+                    emailInput.style.border = 'none';
+                }
+                
+                if(isValid) {
+                    alert('Sua cotação foi solicitada com sucesso! Nossa equipe entrará em contato em breve com sua proposta personalizada.');
+                    contactForm.reset();
+                } else {
+                    alert('Por favor, preencha todos os campos obrigatórios corretamente.');
+                }
+            });
+        }
+        
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', function(e) {
+            if (!navMenu.contains(e.target) && !mobileMenuBtn.contains(e.target) && navMenu.classList.contains('show')) {
+                navMenu.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>

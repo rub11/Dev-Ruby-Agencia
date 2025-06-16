@@ -1,0 +1,1542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEV RUBY | Gestão Premium de Tráfego Pago</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --gold-light: #E6C567;
+            --gold-dark: #B8860B;
+            --dark: #0f0f16;
+            --darker: #08080c;
+            --light: #f8f8fa;
+            --gray: #a0a0b0;
+            --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--darker) 0%, var(--dark) 100%);
+            color: var(--light);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(212, 175, 55, 0.05) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(212, 175, 55, 0.05) 0%, transparent 20%);
+            z-index: -1;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--light);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+            color: var(--darker);
+            padding: 18px 42px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold) 100%);
+            opacity: 0;
+            transition: var(--transition);
+            z-index: -1;
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn:hover::before {
+            opacity: 1;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 70px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 3.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 4px;
+            background: var(--gold);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 30px auto 0;
+            font-size: 1.2rem;
+            line-height: 1.8;
+        }
+
+        .divider {
+            width: 80px;
+            height: 4px;
+            background: var(--gold);
+            margin: 40px auto;
+            border-radius: 2px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(8, 8, 12, 0.85);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 25px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 40px;
+        }
+
+        nav ul li a {
+            color: rgba(255, 255, 255, 0.85);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+            font-size: 1.1rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--gold);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 1.8rem;
+            color: var(--gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 220px 0 150px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(212, 175, 55, 0.03)" d="M0,224L48,218.7C96,213,192,203,288,181.3C384,160,480,128,576,133.3C672,139,768,181,864,192C960,203,1056,181,1152,170.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            line-height: 1.15;
+            text-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+            position: relative;
+        }
+
+        .hero h1 span::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            width: 100%;
+            height: 10px;
+            background: rgba(212, 175, 55, 0.25);
+            z-index: -1;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            color: var(--gray);
+        }
+
+        /* Lead Capture Form */
+        .lead-form {
+            background: rgba(15, 15, 22, 0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 50px;
+            max-width: 700px;
+            margin: 70px auto 0;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lead-form::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+        }
+
+        .form-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .form-title h3 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        .form-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--light);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 18px 25px;
+            background: rgba(25, 25, 35, 0.7);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 12px;
+            color: var(--light);
+            font-size: 1.1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+        }
+
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23D4AF37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1.5rem center;
+            background-size: 1.2rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .checkbox-group input {
+            margin-top: 5px;
+            margin-right: 12px;
+            accent-color: var(--gold);
+        }
+
+        .checkbox-group label {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .checkbox-group a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .checkbox-group a:hover {
+            text-decoration: underline;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 130px 0 100px;
+            position: relative;
+        }
+
+        .services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(212, 175, 55, 0.03)" d="M0,128L48,133.3C96,139,192,149,288,149.3C384,149,480,139,576,122.7C672,107,768,85,864,80C960,75,1056,85,1152,101.3C1248,117,1344,139,1392,149.3L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: rgba(15, 15, 22, 0.6);
+            border-radius: 20px;
+            padding: 45px 35px;
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(5px);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--gold), var(--gold-dark));
+            transform: translateY(-100%);
+            transition: var(--transition);
+        }
+
+        .service-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .service-card:hover::before {
+            transform: translateY(0);
+        }
+
+        .service-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            color: var(--gold);
+            font-size: 2.5rem;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .service-card h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--gold);
+        }
+
+        .service-card p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--gold);
+            margin: 25px 0;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .price span {
+            font-size: 1.2rem;
+            color: var(--gray);
+            font-weight: 400;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 130px 0 100px;
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+            height: 350px;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(8, 8, 12, 0.9) 0%, rgba(8, 8, 12, 0.3) 50%, rgba(8, 8, 12, 0.1) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 30px;
+            opacity: 1;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .overlay {
+            background: linear-gradient(to top, rgba(8, 8, 12, 0.95) 0%, rgba(8, 8, 12, 0.5) 50%, rgba(8, 8, 12, 0.2) 100%);
+        }
+
+        .gallery-item .overlay h4 {
+            font-size: 1.6rem;
+            margin-bottom: 10px;
+        }
+
+        .gallery-item .overlay p {
+            color: var(--gray);
+            font-size: 1.1rem;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            padding: 130px 0;
+            position: relative;
+        }
+
+        .testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(212, 175, 55, 0.03)" d="M0,224L48,218.7C96,213,192,203,288,181.3C384,160,480,128,576,133.3C672,139,768,181,864,192C960,203,1056,181,1152,170.7C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.3;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: rgba(15, 15, 22, 0.6);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            backdrop-filter: blur(5px);
+            transition: var(--transition);
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 25px;
+            font-size: 6rem;
+            color: rgba(212, 175, 55, 0.1);
+            font-family: Georgia, serif;
+            line-height: 1;
+        }
+
+        .testimonial-card .stars {
+            color: var(--gold);
+            margin-bottom: 25px;
+            font-size: 1.4rem;
+        }
+
+        .testimonial-card p {
+            margin-bottom: 30px;
+            font-style: italic;
+            color: var(--light);
+            position: relative;
+            z-index: 2;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-card .client {
+            display: flex;
+            align-items: center;
+        }
+
+        .testimonial-card .client img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            margin-right: 20px;
+            object-fit: cover;
+            border: 2px solid var(--gold);
+        }
+
+        .client-info h4 {
+            margin-bottom: 8px;
+            font-size: 1.3rem;
+        }
+
+        .client-info p {
+            margin: 0;
+            color: var(--gray);
+            font-style: normal;
+            font-size: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(8, 8, 12, 0.95);
+            color: white;
+            padding: 100px 0 50px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-info {
+            position: relative;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            color: var(--gold);
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .footer-info p {
+            max-width: 400px;
+            opacity: 0.8;
+            margin-bottom: 30px;
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.08);
+            color: var(--gold);
+            transition: var(--transition);
+            font-size: 1.4rem;
+        }
+
+        .social-links a:hover {
+            background: var(--gold);
+            color: var(--darker);
+            transform: translateY(-5px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            color: var(--gold);
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: var(--gold);
+            bottom: 0;
+            left: 0;
+            border-radius: 2px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links ul li a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.1rem;
+            display: inline-block;
+            padding: 5px 0;
+        }
+
+        .footer-links ul li a:hover {
+            color: var(--gold);
+            transform: translateX(5px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            font-size: 1.1rem;
+            opacity: 0.7;
+            color: var(--gray);
+        }
+
+        .copyright a {
+            color: var(--gold);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .copyright a:hover {
+            text-decoration: underline;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1200px) {
+            .hero h1 {
+                font-size: 3.8rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: rgba(15, 15, 22, 0.95);
+                backdrop-filter: blur(10px);
+                width: 100%;
+                padding: 20px;
+                display: none;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+                border-top: 1px solid rgba(212, 175, 55, 0.1);
+            }
+
+            nav.active {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .hero {
+                padding: 180px 0 100px;
+            }
+
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.4rem;
+            }
+
+            .lead-form {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.6rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+
+            .service-card,
+            .testimonial-card {
+                padding: 35px 25px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                padding: 160px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 16px 35px;
+                font-size: 1rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                gap: 40px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <i class="fas fa-gem"></i>
+                <div>DEV <span>RUBY</span></div>
+            </div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#servicos">Serviços</a></li>
+                    <li><a href="#galeria">Portfólio</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Gestão de Tráfego Pago com <span>Foco em Seguros</span></h1>
+                <p>Soluções premium para corretores e seguradoras que buscam maximizar conversões com tecnologia de
+                    ponta e estratégias avançadas</p>
+                <a href="#lead-form" class="btn">Solicitar Proposta Exclusiva</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Lead Capture Form -->
+    <section id="lead-form" class="container">
+        <div class="lead-form">
+            <div class="form-title">
+                <h3>Entre em Contato</h3>
+                <p>Preencha o formulário para receber uma proposta personalizada</p>
+            </div>
+            <form id="contact-form">
+                <div class="form-group">
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Seu nome completo"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">E-mail Profissional</label>
+                    <input type="email" id="email" name="email" class="form-control" placeholder="seu.email@empresa.com"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Telefone/WhatsApp</label>
+                    <input type="tel" id="phone" name="phone" class="form-control" placeholder="(00) 00000-0000"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="service">Serviço de Interesse</label>
+                    <select id="service" name="service" class="form-control" required>
+                        <option value="" disabled selected>Selecione um serviço</option>
+                        <option value="gestao-site">Gestão de Site</option>
+                        <option value="gestao-hospedagem">Gestão de Hospedagem</option>
+                        <option value="gestao-dominio">Gestão de Domínio</option>
+                        <option value="gestao-email">Gestão de E-mail</option>
+                        <option value="gestao-trafego">Gestão de Tráfego Pago (Seguros)</option>
+                        <option value="pacote-completo">Pacote Completo</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" class="form-control" rows="5"
+                        placeholder="Conte-nos sobre seu projeto e objetivos..." required></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">Concordo em receber comunicações da DEV RUBY e confirmo que li e aceito a <a
+                            href="Politica e privacidade/index.html">política de privacidade</a>.</label>
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%; margin-top: 30px;">Enviar Solicitação</button>
+            </form>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Services Section -->
+    <section class="services" id="servicos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Serviços Premium</h2>
+                <p>Soluções completas para impulsionar sua presença digital no mercado de seguros com tecnologia de
+                    ponta</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-laptop-code"></i>
+                    </div>
+                    <h3>Gestão de Site</h3>
+                    <p>Desenvolvimento, atualização e manutenção contínua do seu site com tecnologia de ponta e design
+                        premium.</p>
+                    <div class="price"><span></span></div>
+                    <a href="#lead-form" class="btn">Solicitar Serviço</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-server"></i>
+                    </div>
+                    <h3>Gestão de Hospedagem</h3>
+                    <p>Hospedagem premium com segurança avançada, backups diários e suporte técnico especializado 24/7.
+                    </p>
+                    <div class="price"><span></span></div>
+                    <a href="#lead-form" class="btn">Solicitar Serviço</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Gestão de Domínio</h3>
+                    <p>Registro, renovação e proteção avançada de domínios para garantir sua identidade digital.</p>
+                    <div class="price"><span></span></div>
+                    <a href="#lead-form" class="btn">Solicitar Serviço</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Gestão de E-mail</h3>
+                    <p>Soluções corporativas de e-mail com segurança avançada e integração total com seu domínio.</p>
+                    <div class="price"><span></span></div>
+                    <a href="#lead-form" class="btn">Solicitar Serviço</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Gestão de Tráfego Pago</h3>
+                    <p>Estratégias avançadas de Google Ads e Meta Ads focadas exclusivamente no mercado de seguros.</p>
+                    <div class="price"><span></span></div>
+                    <a href="#lead-form" class="btn">Solicitar Serviço</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Gallery Section -->
+    <section class="gallery" id="galeria">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfólio Exclusivo</h2>
+                <p>Explore nossos projetos premium desenvolvidos para o mercado de seguros (CLIQUE SOB AS IMAGENS PARA
+                    VER OS PROJETOS)</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- 15 portfolio items -->
+                <a href="Seguros Master ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/Site Seguros Master apenas imagem de alguem pegando o seguro que pagou.jpg"
+                            alt="Site Seguros Master">
+                        <div class="overlay">
+                            <h4>Seguros Master</h4>
+                            <p>Design premium para seguradora</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+                <a href="vida segura ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/alguem no hospital feliz por que aesta sendo muito bem atendida pelos medicos.jpg"
+                            alt="Site Vida Segura">
+                        <div class="overlay">
+                            <h4>Vida Segura</h4>
+                            <p>Plataforma para seguros de vida</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+                <a href="auto proteção ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/alguem ligado com o celular dela  pro seguro feliz por que o seguro vai sobrie tudo apos uma batida de dcarros.jpg"
+                            alt="Site Auto Proteção">
+                        <div class="overlay">
+                            <h4> Proteção Auto</h4>
+                            <p>Portal para seguros automotivos</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+                <a href="residencia segura ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/alguem ligado com o celular dela  pro seguro feliz por que o seguro vai sobrie tudo apos um incidente de casa pegando fogo.jpg"
+                            alt="Site Residência Segura">
+                        <div class="overlay">
+                            <h4>Residência Segura</h4>
+                            <p>Seguros residenciais premium</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+
+                <a href="saude protegida ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/alguem sendo cuidado no hospital por bons medicos.jpg"
+                            alt="Site Saúde Protegida">
+                        <div class="overlay">
+                            <h4>Saúde Protegida</h4>
+                            <p>Plataforma para planos de saúde</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+                <a href="captal seguro ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/alguem tendo o seu dinheiro e patrimonio muito bem protegidos  no banco.jpg"
+                            alt="Site Capital Seguro">
+                        <div class="overlay">
+                            <h4>Capital Seguro</h4>
+                            <p>Investimentos e seguros patrimoniais</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+
+                <a href="previdencia elite ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/alguem tendo o previdencia de elite.jpg" alt="Site Previdência Elite">
+                        <div class="overlay">
+                            <h4>Previdência Elite</h4>
+                            <p>Planejamento previdenciário</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+                <!-- ARRUMAR ESSE SITE QUE ESTÁ QUEBRANDO   -->
+                <a href="seguro viagem ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/plataforma de seguros para viagem.jpg" alt="Site Seguro Viagem">
+                        <div class="overlay">
+                            <h4>Seguro Viagem</h4>
+                            <p>Plataforma para seguros de viagem</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+
+                <a href="seguro rural ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/Soluções para o agronegócio.jpg" alt="Site Seguro Rural">
+                        <div class="overlay">
+                            <h4>Seguro Rural</h4>
+                            <p>Soluções para o agronegócio</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+                <a href="Cyber Protection ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/Seguros cibernéticos.jpg" alt="Site Cyber Protection">
+                        <div class="overlay">
+                            <h4>Cyber Protection</h4>
+                            <p>Seguros cibernéticos</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+                <a href="Seguro Pet ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/Planos de saúde para animais.jpg" alt="Site Seguro Pet">
+                        <div class="overlay">
+                            <h4>Seguro Pet</h4>
+                            <p>Planos de saúde para animais</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+                <a href="nautico seguro ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/Seguros para embarcações grandes.jpg" alt="Site Náutico Seguro">
+                        <div class="overlay">
+                            <h4>Náutico Seguro</h4>
+                            <p>Seguros para embarcações</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+
+                <a href="seguro cultural ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/Proteção para eventos culturais de alto padrao.jpg"
+                            alt="Site Seguro Cultural">
+                        <div class="overlay">
+                            <h4>Seguro Cultural</h4>
+                            <p>Proteção para eventos culturais</p>
+                        </div>
+                    </div>
+                </a>
+
+
+
+
+                <a href="seguro educacional ok/index.html">
+                    <div class="gallery-item">
+                        <img src="imagens/Seguro Educacional_Proteção para instituições de ensino.jpg"
+                            alt="Site Seguro Educacional">
+                        <div class="overlay">
+                            <h4>Seguro Educacional</h4>
+                            <p>Proteção para instituições de ensino</p>
+                        </div>
+                    </div>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials" id="depoimentos">
+        <div class="container">
+            <div class="section-title">
+                <h2>Depoimentos de Clientes</h2>
+                <p>O que os principais players do mercado de seguros dizem sobre nossos serviços premium</p>
+            </div>
+            <div class="testimonials-grid">
+                <!-- 7 testimonials -->
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"A gestão de tráfego pago da DEV RUBY revolucionou nossa operação. Em 4 meses, triplicamos nossa
+                        base de clientes com campanhas altamente segmentadas e ROI impressionante."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Silva">
+                        <div class="client-info">
+                            <h4>Carlos Silva</h4>
+                            <p>Diretor, Seguros Total</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Contratei o pacote completo de gestão digital. O suporte é excepcional e o desempenho do site
+                        superou todas as expectativas. Um investimento que realmente vale a pena."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Ana Paula">
+                        <div class="client-info">
+                            <h4>Ana Paula</h4>
+                            <p>CEO, Seguradora Vida Plena</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Como corretor independente, precisava de um site premium e campanhas eficientes. A DEV RUBY
+                        entregou uma solução completa que triplicou minhas conversões em apenas 2 meses."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/men/62.jpg" alt="Roberto Almeida">
+                        <div class="client-info">
+                            <h4>Roberto Almeida</h4>
+                            <p>Corretor de Seguros Premium</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"A estratégia de tráfego focada em seguros trouxe resultados surpreendentes. ROI 7x maior que
+                        nossas campanhas anteriores. Julio é um especialista que entende profundamente nosso mercado."
+                    </p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Mariana Costa">
+                        <div class="client-info">
+                            <h4>Mariana Costa</h4>
+                            <p>Gerente de Marketing, Seguradora Nacional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Migrei toda minha operação digital para a DEV RUBY. A gestão de domínio, e-mails e site é
+                        impecável. O suporte responde em minutos e resolve qualquer questão com maestria."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/men/41.jpg" alt="Felipe Oliveira">
+                        <div class="client-info">
+                            <h4>Felipe Oliveira</h4>
+                            <p>Proprietário, Seguros Online Premium</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"O site que desenvolveram para nossa corretora é uma obra de arte. Moderno, rápido e com taxa de
+                        conversão 4x maior que o anterior. Os clientes adoram a experiência premium de navegação."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Juliana Santos">
+                        <div class="client-info">
+                            <h4>Juliana Santos</h4>
+                            <p>Diretora, Corretora Elite Seguros</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"Contratei a gestão completa e não poderia estar mais satisfeito. Meu negócio de seguros cresceu
+                        220% em 8 meses com as estratégias premium da DEV RUBY. O melhor investimento que fiz."</p>
+                    <div class="client">
+                        <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Ricardo Mendes">
+                        <div class="client-info">
+                            <h4>Ricardo Mendes</h4>
+                            <p>Fundador, Seguros Master</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contato">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <div class="footer-logo">
+                        <i class="fas fa-gem"></i> DEV RUBY
+                    </div>
+                    <p>Especialistas em soluções digitais premium para o mercado de seguros. Oferecemos gestão completa
+                        com tecnologia de ponta e resultados excepcionais.</p>
+
+
+
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61568131228443"><i
+                                class="fab fa-facebook-f"></i></a>
+
+
+                        <a href="https://www.instagram.com/ojulio_dasilva/?hl=en"><i class="fab fa-instagram"></i></a>
+
+
+                        <a href="https://wa.me/5511974793895"><i class="fab fa-whatsapp"></i></a>
+
+
+
+                    </div>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#servicos">Gestão de Site</a></li>
+                        <li><a href="#servicos">Gestão de Hospedagem</a></li>
+                        <li><a href="#servicos">Gestão de Domínio</a></li>
+                        <li><a href="#servicos">Gestão de E-mail</a></li>
+                        <li><a href="#servicos">Gestão de Tráfego Pago</a></li>
+                        <li><a href="#servicos">Pacote Completo</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Links Rápidos</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#servicos">Serviços</a></li>
+                        <li><a href="#galeria">Portfólio</a></li>
+                        <li><a href="#depoimentos">Depoimentos</a></li>
+                        <li><a href="#contato">Contato</a></li>
+                        <li><a href="#lead-form">Solicitar Proposta</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>Todos os direitos reservados a DEV RUBY e Julio | Gestor de Tráfego Pago</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+
+
+
+
+
+
+        (function () {
+            emailjs.init("uRc6dkT2-wNU6tCM1"); // Substitua aqui
+        })();
+
+        document.getElementById("contact-form").addEventListener("submit", function (e) {
+            e.preventDefault(); // Impede o recarregamento da página
+
+            emailjs.sendForm("service_qov2vqd", "template_xzs11tj", this)
+                .then(function () {
+                    alert("Mensagem enviada com sucesso!");
+                    document.getElementById("contact-form").reset();
+                }, function (error) {
+                    alert("Erro ao enviar: " + JSON.stringify(error));
+                });
+        });
+
+
+
+
+
+
+
+
+
+        // Mobile menu toggle
+        document.querySelector('.menu-toggle').addEventListener('click', function () {
+            document.querySelector('nav').classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+
+                // Close mobile menu after click
+                if (document.querySelector('nav').classList.contains('active')) {
+                    document.querySelector('nav').classList.remove('active');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show success message
+            alert('Solicitação enviada com sucesso! Entraremos em contato em breve com sua proposta exclusiva.');
+
+            // Reset form
+            this.reset();
+        });
+    </script>
+</body>
+
+</html>
